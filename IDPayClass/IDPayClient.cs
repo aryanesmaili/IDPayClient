@@ -46,17 +46,17 @@ namespace IDPayClass
         /// </summary>
         /// <param name="requestInfo">The payment request information.</param>
         /// <returns>
-        /// a <see cref="PaymentRequestResponse"/> object with the payment response details.
+        /// a <see cref="CreatePaymentResponse"/> object with the payment response details.
         /// </returns>
-        public async Task<PaymentRequestResponse> RequestPaymentAsync(PaymentRequest requestInfo)
+        public async Task<CreatePaymentResponse> RequestPaymentAsync(CreatePaymentRequest requestInfo)
         {
             HttpRequestMessage request = new(HttpMethod.Post, _requestNewTransactionAPI)
             { Content = new StringContent(JsonSerializer.Serialize(requestInfo), Encoding.UTF8, "application/json") };
 
             HttpResponseMessage response = await _httpClient.SendAsync(request);
 
-            PaymentRequestResponse? paymentResponse;
-            paymentResponse = await JsonSerializer.DeserializeAsync<PaymentRequestResponse>(await response.Content.ReadAsStreamAsync());
+            CreatePaymentResponse? paymentResponse;
+            paymentResponse = await JsonSerializer.DeserializeAsync<CreatePaymentResponse>(await response.Content.ReadAsStreamAsync());
 
             paymentResponse!.Success = response.StatusCode == HttpStatusCode.Created;
 
@@ -90,7 +90,7 @@ namespace IDPayClass
         /// <returns>
         /// a <see cref="TransactionInquiryResponse"/> object with the transaction status details.
         /// </returns>
-        public async Task<TransactionInquiryResponse> CheckTransactionStatus(TransactionInquiryRequest requestInfo)
+        public async Task<TransactionInquiryResponse> CheckTransactionStatusAsync(TransactionInquiryRequest requestInfo)
         {
             HttpRequestMessage request = new(HttpMethod.Post, _paymentInquiryAPI)
             { Content = new StringContent(JsonSerializer.Serialize(requestInfo), Encoding.UTF8, "application/json") };
@@ -110,7 +110,7 @@ namespace IDPayClass
         /// <returns>
         /// The result contains a <see cref="TransactionListResponse"/> object with the list of transactions.
         /// </returns>
-        public async Task<TransactionListResponse> GetTransactionList(TransactionListRequest requestInfo)
+        public async Task<TransactionListResponse> GetTransactionListAsync(TransactionListRequest requestInfo)
         {
             HttpRequestMessage request = new(HttpMethod.Post, _transactionsListAPI)
             { Content = new StringContent(JsonSerializer.Serialize(requestInfo), Encoding.UTF8, "application/json") };
@@ -140,7 +140,7 @@ namespace IDPayClass
     /// <summary>
     /// Represents an object containing the info required to request a transaction from IDPay
     /// </summary>
-    public class PaymentRequest()
+    public class CreatePaymentRequest()
     {
         private string orderId = string.Empty;
         private string? description;
@@ -259,7 +259,7 @@ namespace IDPayClass
     /// <summary>
     /// Represents IDPay's Response to requesting payment.
     /// </summary>
-    public class PaymentRequestResponse
+    public class CreatePaymentResponse
     {
         private string transactionID = string.Empty;
         private string paymentLink = string.Empty;
@@ -393,6 +393,9 @@ namespace IDPayClass
         [JsonPropertyName("id")]
         public required string TransactionID { get => transactionID; set => transactionID = value.Trim(); }
 
+        /// <summary>
+        /// Order ID sent in payment creation stage.
+        /// </summary>
         [JsonPropertyName("order_id")]
         public required string OrderID { get => orderID; set => orderID = value.Trim(); }
     }
@@ -789,7 +792,7 @@ namespace IDPayClass
 
         /// <summary>
         /// DateTime of the payment.
-        /// </summary>
+        /// </summary>  
         public DateTime Date { get; set; }
     }
 
