@@ -55,7 +55,7 @@ var idPayClient = new IDPayClient(config, httpClient);
 ### Configuration in Program.cs (.NET 8+)
 
 ```csharp
-using IDPayClass;
+using IDPayClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -217,7 +217,7 @@ var inquiryRequest = new TransactionInquiryRequest
     OrderID = "your_order_id"
 };
 
-var statusResponse = await idPayClient.CheckTransactionStatus(inquiryRequest);
+var statusResponse = await idPayClient.CheckTransactionStatusAsync(inquiryRequest);
 ```
 
 ## Configuration Options

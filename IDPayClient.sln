@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35514.174 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDPayClient", "IDPayClient\IDPayClient.csproj", "{AC9FA23A-5FB0-4319-AEB5-0BA6EF9137CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC9FA23A-5FB0-4319-AEB5-0BA6EF9137CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC9FA23A-5FB0-4319-AEB5-0BA6EF9137CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC9FA23A-5FB0-4319-AEB5-0BA6EF9137CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC9FA23A-5FB0-4319-AEB5-0BA6EF9137CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
